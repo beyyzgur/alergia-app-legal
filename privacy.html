@@ -33,7 +33,7 @@
 
 <section class="doc" id="en" lang="en">
 <h1>Alergia Privacy Policy</h1>
-<p class="meta">Last updated: 19 November 2026 · <a href="#tr">Türkçe</a></p>
+<p class="meta">Last updated: 20 November 2026 · <a href="#tr">Türkçe</a></p>
 
 <h2>1. Who we are</h2>
 <p>Alergia is a free iPhone app that helps people with allergies check scanned packaged foods, see a daily pollen and weather risk level, and ask an AI assistant allergy questions. It is published by Ayşe Beyza Gür, an individual developer in Türkiye ("we", "us"). Contact: <a href="mailto:info.alergiaapp@gmail.com">info.alergiaapp@gmail.com</a>.</p>
@@ -41,25 +41,26 @@
 <h2>2. The short version</h2>
 <ul>
   <li>There are no accounts and no sign-in.</li>
-  <li>We run no server. We do not collect, receive or store your personal data ourselves.</li>
+  <li>We have no accounts and no user database. For the Allergy Assistant only, we run a small relay on Cloudflare (see section 4) that passes your chat to Groq. It does not store your messages.</li>
   <li>No ads, no tracking, no analytics and we never sell data.</li>
   <li>Your name, allergens, favourites and scanned products stay on your phone.</li>
   <li>To work, the app sends some data to the outside services listed in section 4.</li>
 </ul>
 
 <h2>3. Data stored on your phone</h2>
-<p>The app stores the following on your device only: the name you enter (optional), your selected allergens, your favourites, your recently scanned products, and your settings (language, appearance, notification choice, whether onboarding is finished). We cannot see this data. You can change it inside the app, and deleting the app removes all of it.</p>
+<p>The app stores the following on your device only: the name you enter (optional), your selected allergens, your favourites, your recently scanned products, and your settings (language, appearance, notification choice, whether onboarding is finished) and a random install ID that the app creates for the daily message limit of the assistant. We cannot see this data. You can change it inside the app, and deleting the app removes all of it.</p>
 
 <h2>4. Data that leaves your phone</h2>
-<p>The app uses the following services. They receive data directly from your phone, not through us. Like any internet request, each request also reveals your IP address to the service that receives it.</p>
+<p>The app uses the following services. Except for the Allergy Assistant, they receive data directly from your phone, not through us. Like any internet request, each request also reveals your IP address to the service that receives it.</p>
 <table>
 <tr><th>Service</th><th>What it receives</th><th>When</th></tr>
 <tr><td>Open Food Facts</td><td>The barcode you scan. Product images are also loaded from its servers.</td><td>When you scan a product or open a product with a picture</td></tr>
 <tr><td>Open-Meteo</td><td>Your approximate location, rounded to one decimal (about 11 km)</td><td>When Home loads the pollen and weather card, and when the app plans a pollen alert</td></tr>
-<tr><td>Groq</td><td>Your chat messages, the recent conversation, your saved allergen names, the app language, and product details if you ask about a scan</td><td>Only when you use the Allergy Assistant</td></tr>
+<tr><td>Cloudflare (our relay for the assistant)</td><td>Your chat messages, the recent conversation, your saved allergen names, the app language, product details if you ask about a scan, the random install ID, and your IP address. The relay passes the chat on to Groq and does not store your messages. To apply a daily message limit it keeps only scrambled (hashed) values of the install ID and the IP address, with a message count, until the end of the day (UTC).</td><td>Only when you use the Allergy Assistant</td></tr>
+<tr><td>Groq</td><td>The same chat messages, conversation, allergen names, app language and product details, received from our relay and not from your phone, so Groq does not see your IP address</td><td>Only when you use the Allergy Assistant</td></tr>
 <tr><td>Apple</td><td>Your location, to look up the city name (iOS location services)</td><td>When Home shows your city</td></tr>
 </table>
-<p>These services handle the data under their own terms and privacy policies, which we do not control: <a href="https://world.openfoodfacts.org/data">Open Food Facts</a>, <a href="https://open-meteo.com">Open-Meteo</a>, <a href="https://groq.com">Groq</a> and <a href="https://www.apple.com/legal/privacy/">Apple</a>. We do not know how long Groq keeps the messages it receives; please read its policy before you use the assistant.</p>
+<p>These services handle the data under their own terms and privacy policies, which we do not control: <a href="https://world.openfoodfacts.org/data">Open Food Facts</a>, <a href="https://open-meteo.com">Open-Meteo</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>, <a href="https://groq.com">Groq</a> and <a href="https://www.apple.com/legal/privacy/">Apple</a>. According to Groq, it does not keep the inputs and outputs of API requests by default, but it may keep them for up to 30 days to investigate errors or suspected abuse. Please read its policy before you use the assistant.</p>
 
 <h2>5. Permissions</h2>
 <ul>
@@ -70,7 +71,7 @@
 <p>You can change every permission at any time in iOS Settings.</p>
 
 <h2>6. Allergens, health and the AI assistant</h2>
-<p>Your allergens relate to your health. They leave your phone only when you ask the Allergy Assistant a question, so that it can answer based on your allergens. Before the first chat, the assistant screen explains this and asks you to tap "Start Chatting"; by tapping it you explicitly agree to this transfer to Groq. You can withdraw your consent at any time with the "Assistant Data Sharing" switch in Profile &gt; Settings. If you do not agree, do not use the assistant; the rest of the app works without it. Please do not type information into the chat that you do not want shared. Answers are generated by AI, can be wrong or incomplete, and are not medical advice.</p>
+<p>Your allergens relate to your health. They leave your phone only when you ask the Allergy Assistant a question, so that it can answer based on your allergens. Before the first chat, the assistant screen explains this and asks you to tap "Start Chatting"; by tapping it you explicitly agree to this transfer to Groq through our relay on Cloudflare. You can withdraw your consent at any time with the "Assistant Data Sharing" switch in Profile &gt; Settings. If you do not agree, do not use the assistant; the rest of the app works without it. Please do not type information into the chat that you do not want shared. Answers are generated by AI, can be wrong or incomplete, and are not medical advice.</p>
 
 <h2>7. What we do not do</h2>
 <ul>
@@ -80,10 +81,10 @@
 </ul>
 
 <h2>8. Children</h2>
-<p>Alergia is not meant for anyone under 16. We do not knowingly collect data from children, and since we hold no personal data, there is nothing for us to delete. A parent or guardian who has a concern can write to us.</p>
+<p>Alergia is not meant for anyone under 16. We do not knowingly collect data from children, and since we keep no messages or profile of anyone, there is nothing for us to delete. A parent or guardian who has a concern can write to us.</p>
 
 <h2>9. Your rights</h2>
-<p>Because we do not hold your personal data, there is nothing for us to access, correct or delete. You control the data on your phone by editing it in the app or deleting the app. If you write to us by email, we use your address and message only to answer you. If you are in Türkiye, you may use the rights in Article 11 of the Personal Data Protection Law No. 6698 (KVKK) by writing to the address above. If you are in the European Economic Area, you may also contact your local data protection authority.</p>
+<p>Because we do not keep your messages or a profile of you (the relay only keeps the short-lived scrambled counters described in section 4), there is nothing for us to access, correct or delete. You control the data on your phone by editing it in the app or deleting the app. If you write to us by email, we use your address and message only to answer you. If you are in Türkiye, you may use the rights in Article 11 of the Personal Data Protection Law No. 6698 (KVKK) by writing to the address above. If you are in the European Economic Area, you may also contact your local data protection authority.</p>
 
 <h2>10. Security and international transfers</h2>
 <p>Requests to the services above are sent over encrypted connections (HTTPS). Those services may process data outside your country, including outside Türkiye and the EEA, under their own rules.</p>
@@ -97,7 +98,7 @@
 
 <section class="doc" id="tr" lang="tr">
 <h1>Alergia Gizlilik Politikası</h1>
-<p class="meta">Son güncelleme: 19 Kasım 2026 · <a href="#en">English</a></p>
+<p class="meta">Son güncelleme: 20 Kasım 2026 · <a href="#en">English</a></p>
 
 <h2>1. Biz kimiz</h2>
 <p>Alergia; alerjisi olan kişilerin taranan paketli gıdaları kontrol etmesine, günlük polen ve hava riski düzeyini görmesine ve bir yapay zekâ asistanına alerji soruları sormasına yardım eden ücretsiz bir iPhone uygulamasıdır. Uygulamayı Türkiye'de yaşayan bireysel geliştirici Ayşe Beyza Gür ("biz") yayımlamaktadır. İletişim: <a href="mailto:info.alergiaapp@gmail.com">info.alergiaapp@gmail.com</a>.</p>
@@ -105,25 +106,26 @@
 <h2>2. Kısaca</h2>
 <ul>
   <li>Hesap ve oturum açma yoktur.</li>
-  <li>Sunucu işletmiyoruz. Kişisel verilerinizi kendimiz toplamıyor, almıyor ve saklamıyoruz.</li>
+  <li>Hesap veya kullanıcı veritabanımız yoktur. Yalnızca Alerji Asistanı için Cloudflare üzerinde, sohbetinizi Groq'a ileten küçük bir aktarım servisi işletiyoruz (4. bölüme bakın). Mesajlarınızı saklamaz.</li>
   <li>Reklam, takip ve analiz yoktur; veri satmayız.</li>
   <li>Adınız, alerjenleriniz, favorileriniz ve taradığınız ürünler telefonunuzda kalır.</li>
   <li>Uygulamanın çalışması için bazı veriler, 4. bölümde sayılan dış servislere gönderilir.</li>
 </ul>
 
 <h2>3. Telefonunuzda saklanan veriler</h2>
-<p>Uygulama şunları yalnızca cihazınızda saklar: girdiğiniz ad (isteğe bağlı), seçtiğiniz alerjenler, favorileriniz, son taradığınız ürünler ve ayarlarınız (dil, görünüm, bildirim tercihi, tanıtımın tamamlanıp tamamlanmadığı). Bu verileri göremeyiz. Uygulama içinden değiştirebilirsiniz; uygulamayı silmek hepsini siler.</p>
+<p>Uygulama şunları yalnızca cihazınızda saklar: girdiğiniz ad (isteğe bağlı), seçtiğiniz alerjenler, favorileriniz, son taradığınız ürünler ve ayarlarınız (dil, görünüm, bildirim tercihi, tanıtımın tamamlanıp tamamlanmadığı) ve asistanın günlük mesaj sınırı için uygulamanın oluşturduğu rastgele bir kurulum kimliği. Bu verileri göremeyiz. Uygulama içinden değiştirebilirsiniz; uygulamayı silmek hepsini siler.</p>
 
 <h2>4. Telefonunuzdan çıkan veriler</h2>
-<p>Uygulama aşağıdaki servisleri kullanır. Bu servisler veriyi bizim üzerimizden değil, doğrudan telefonunuzdan alır. Her internet isteğinde olduğu gibi, isteği alan servis IP adresinizi de görür.</p>
+<p>Uygulama aşağıdaki servisleri kullanır. Alerji Asistanı dışında bu servisler veriyi bizim üzerimizden değil, doğrudan telefonunuzdan alır. Her internet isteğinde olduğu gibi, isteği alan servis IP adresinizi de görür.</p>
 <table>
 <tr><th>Servis</th><th>Aldığı veri</th><th>Ne zaman</th></tr>
 <tr><td>Open Food Facts</td><td>Taradığınız barkod. Ürün görselleri de bu servisin sunucularından yüklenir.</td><td>Bir ürünü taradığınızda veya görselli bir ürünü açtığınızda</td></tr>
 <tr><td>Open-Meteo</td><td>Yaklaşık konumunuz; bir ondalığa yuvarlanır (yaklaşık 11 km)</td><td>Ana sayfa polen ve hava kartını yüklediğinde ve uygulama bir polen uyarısı planladığında</td></tr>
-<tr><td>Groq</td><td>Sohbet mesajlarınız, yakın zamanlı konuşma, kayıtlı alerjen adlarınız, uygulama dili ve bir taramayı sorarsanız ürün bilgileri</td><td>Yalnızca Alerji Asistanı'nı kullandığınızda</td></tr>
+<tr><td>Cloudflare (asistan için aktarım servisimiz)</td><td>Sohbet mesajlarınız, yakın zamanlı konuşma, kayıtlı alerjen adlarınız, uygulama dili, bir taramayı sorarsanız ürün bilgileri, rastgele kurulum kimliği ve IP adresiniz. Aktarım servisi sohbeti Groq'a iletir ve mesajlarınızı saklamaz. Günlük mesaj sınırını uygulamak için kurulum kimliğinin ve IP adresinin yalnızca karıştırılmış (özetlenmiş, "hash") değerlerini, bir mesaj sayısıyla birlikte, günün sonuna (UTC) kadar tutar.</td><td>Yalnızca Alerji Asistanı'nı kullandığınızda</td></tr>
+<tr><td>Groq</td><td>Aynı sohbet mesajları, konuşma, alerjen adları, uygulama dili ve ürün bilgileri; telefonunuzdan değil aktarım servisimizden alınır, bu yüzden Groq IP adresinizi görmez</td><td>Yalnızca Alerji Asistanı'nı kullandığınızda</td></tr>
 <tr><td>Apple</td><td>Şehir adını bulmak için konumunuz (iOS konum servisleri)</td><td>Ana sayfa şehrinizi gösterdiğinde</td></tr>
 </table>
-<p>Bu servisler veriyi kendi şartları ve gizlilik politikalarına göre işler; bunları biz denetleyemeyiz: <a href="https://world.openfoodfacts.org/data">Open Food Facts</a>, <a href="https://open-meteo.com">Open-Meteo</a>, <a href="https://groq.com">Groq</a> ve <a href="https://www.apple.com/legal/privacy/">Apple</a>. Groq'un aldığı mesajları ne kadar süre sakladığını bilmiyoruz; asistanı kullanmadan önce politikasını okumanızı rica ederiz.</p>
+<p>Bu servisler veriyi kendi şartları ve gizlilik politikalarına göre işler; bunları biz denetleyemeyiz: <a href="https://world.openfoodfacts.org/data">Open Food Facts</a>, <a href="https://open-meteo.com">Open-Meteo</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>, <a href="https://groq.com">Groq</a> ve <a href="https://www.apple.com/legal/privacy/">Apple</a>. Groq'a göre Groq, API isteklerinin girdilerini ve çıktılarını varsayılan olarak saklamaz; ancak hataları veya şüpheli kötüye kullanımı incelemek için bunları en fazla 30 gün saklayabilir. Asistanı kullanmadan önce Groq'un politikasını okumanızı rica ederiz.</p>
 
 <h2>5. İzinler</h2>
 <ul>
@@ -134,7 +136,7 @@
 <p>Tüm izinleri istediğiniz zaman iOS Ayarlar'dan değiştirebilirsiniz.</p>
 
 <h2>6. Alerjenler, sağlık ve yapay zekâ asistanı</h2>
-<p>Alerjenleriniz sağlığınızla ilgilidir. Asistanın yanıtlarını alerjenlerinize göre verebilmesi için bu veriler yalnızca Alerji Asistanı'na soru sorduğunuzda telefonunuzdan çıkar. İlk sohbetten önce asistan ekranı bunu açıklar ve sizden "Sohbete Başla" düğmesine dokunmanızı ister; düğmeye dokunarak bu verilerin Groq'a aktarılmasına açıkça onay vermiş olursunuz. Onayınızı dilediğiniz zaman Profil &gt; Ayarlar bölümündeki "Asistan Veri Paylaşımı" anahtarıyla geri alabilirsiniz. Onay vermiyorsanız asistanı kullanmayın; uygulamanın geri kalanı onsuz çalışır. Paylaşılmasını istemediğiniz bilgileri lütfen sohbete yazmayın. Cevaplar yapay zekâ tarafından üretilir, hatalı veya eksik olabilir ve tıbbi tavsiye değildir.</p>
+<p>Alerjenleriniz sağlığınızla ilgilidir. Asistanın yanıtlarını alerjenlerinize göre verebilmesi için bu veriler yalnızca Alerji Asistanı'na soru sorduğunuzda telefonunuzdan çıkar. İlk sohbetten önce asistan ekranı bunu açıklar ve sizden "Sohbete Başla" düğmesine dokunmanızı ister; düğmeye dokunarak bu verilerin Cloudflare üzerindeki aktarım servisimiz aracılığıyla Groq'a aktarılmasına açıkça onay vermiş olursunuz. Onayınızı dilediğiniz zaman Profil &gt; Ayarlar bölümündeki "Asistan Veri Paylaşımı" anahtarıyla geri alabilirsiniz. Onay vermiyorsanız asistanı kullanmayın; uygulamanın geri kalanı onsuz çalışır. Paylaşılmasını istemediğiniz bilgileri lütfen sohbete yazmayın. Cevaplar yapay zekâ tarafından üretilir, hatalı veya eksik olabilir ve tıbbi tavsiye değildir.</p>
 
 <h2>7. Yapmadıklarımız</h2>
 <ul>
@@ -144,10 +146,10 @@
 </ul>
 
 <h2>8. Çocuklar</h2>
-<p>Alergia 16 yaşın altındaki kişiler için tasarlanmamıştır. Çocuklardan bilerek veri toplamayız; zaten kişisel veri tutmadığımız için silinecek bir şey de yoktur. Endişesi olan bir ebeveyn veya vasi bize yazabilir.</p>
+<p>Alergia 16 yaşın altındaki kişiler için tasarlanmamıştır. Çocuklardan bilerek veri toplamayız; kimsenin mesajlarını veya profilini tutmadığımız için silinecek bir şey de yoktur. Endişesi olan bir ebeveyn veya vasi bize yazabilir.</p>
 
 <h2>9. Haklarınız</h2>
-<p>Kişisel verilerinizi tutmadığımız için erişilecek, düzeltilecek veya silinecek bir veri bizde yoktur. Telefonunuzdaki verileri uygulama içinden değiştirerek veya uygulamayı silerek siz yönetirsiniz. Bize e-posta yazarsanız adresinizi ve mesajınızı yalnızca size cevap vermek için kullanırız. Türkiye'deyseniz 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun (KVKK) 11. maddesindeki haklarınızı yukarıdaki adrese yazarak kullanabilirsiniz. Avrupa Ekonomik Alanı'ndaysanız yerel veri koruma otoritenize de başvurabilirsiniz.</p>
+<p>Mesajlarınızı veya profilinizi tutmadığımız için (aktarım servisi yalnızca 4. bölümde anlatılan kısa ömürlü karıştırılmış sayaçları tutar) erişilecek, düzeltilecek veya silinecek bir veri bizde yoktur. Telefonunuzdaki verileri uygulama içinden değiştirerek veya uygulamayı silerek siz yönetirsiniz. Bize e-posta yazarsanız adresinizi ve mesajınızı yalnızca size cevap vermek için kullanırız. Türkiye'deyseniz 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun (KVKK) 11. maddesindeki haklarınızı yukarıdaki adrese yazarak kullanabilirsiniz. Avrupa Ekonomik Alanı'ndaysanız yerel veri koruma otoritenize de başvurabilirsiniz.</p>
 
 <h2>10. Güvenlik ve yurt dışına aktarım</h2>
 <p>Yukarıdaki servislere giden istekler şifreli bağlantı (HTTPS) üzerinden gönderilir. Bu servisler veriyi kendi kurallarına göre Türkiye ve AEA dışında dahil, ülkeniz dışında işleyebilir.</p>
